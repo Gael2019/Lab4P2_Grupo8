@@ -19,6 +19,7 @@ public class JavaApplication5 {
     public static void main(String[] args) {
         ArrayList<Movimiento> Movimiento = new ArrayList();
         ArrayList<Pokemon> Pokemones = new ArrayList();
+        ArrayList<Entrenador>Entrenador = new ArrayList();
         Scanner pd = new Scanner(System.in);
 
         boolean bandi = true;
@@ -36,7 +37,25 @@ public class JavaApplication5 {
             int menu = pd.nextInt();
             switch (menu) {
                 case 1:
-
+                    System.out.println("Marque el nombre de su entrenador");
+                    String nombre= pd.next();
+                    System.out.println("Marque la edad de su entrenador");
+                    int edad=pd.nextInt();
+                    System.out.println("Marque el dinero que tiene su entrenador, o marquele 0 si le esta dando dinero a su mama (es broma)");
+                    int dinero=pd.nextInt();
+                    Entrenador.add(new Entrenador(nombre, edad, dinero));
+                    System.out.println("Esta es la lista de entrenadores existentes, marque el numero de enfrente de la opcion para seleccionarlo");
+                    for (int i = 0; i < Entrenador.size(); i++) {
+                        System.out.println(i+"."+Entrenador.get(i));
+                    }
+                    int DesE=pd.nextInt();
+                    System.out.println("Esta es la lista de pokemones existentes");
+                    for (int i = 0; i < Pokemones.size(); i++) {
+                        System.out.println(i + "." + Pokemones.get(i));
+                    }
+                    System.out.println("Marque el numero de enfrente de pokemon para selecionarlo");
+                    int PokS = pd.nextInt();
+                    System.out.println("Desea agregar ese pokemon al equipo de su entrenador o a su caja");
                     break;
                 case 2:
 

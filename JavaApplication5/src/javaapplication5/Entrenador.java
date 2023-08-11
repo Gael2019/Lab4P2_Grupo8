@@ -60,6 +60,14 @@ public class Entrenador {
     public Entrenador() {
     }
 
+    public Entrenador(String nombre, int edad, int Dinero) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.Dinero = Dinero;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Entrenador{" + "nombre=" + nombre + ", edad=" + edad + ", Dinero=" + Dinero + ", APokemon=" + APokemon + ", caja=" + caja + "}\n";
