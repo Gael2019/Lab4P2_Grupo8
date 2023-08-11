@@ -19,9 +19,9 @@ public class JavaApplication5 {
     public static void main(String[] args) {
         ArrayList<Movimiento> Movimiento = new ArrayList();
         ArrayList<Pokemon> Pokemones = new ArrayList();
-        ArrayList<Entrenador>Entrenador = new ArrayList();
+        ArrayList<Entrenador>Entrenadores = new ArrayList();
         Scanner pd = new Scanner(System.in);
-
+        Entrenador trainer= new Entrenador();
         boolean bandi = true;
         while (bandi) {
             System.out.println("Bienvenido al sistema de juego Pokemon");
@@ -43,10 +43,10 @@ public class JavaApplication5 {
                     int edad=pd.nextInt();
                     System.out.println("Marque el dinero que tiene su entrenador, o marquele 0 si le esta dando dinero a su mama (es broma)");
                     int dinero=pd.nextInt();
-                    Entrenador.add(new Entrenador(nombre, edad, dinero));
+                    Entrenadores.add(new Entrenador(nombre, edad, dinero));
                     System.out.println("Esta es la lista de entrenadores existentes, marque el numero de enfrente de la opcion para seleccionarlo");
-                    for (int i = 0; i < Entrenador.size(); i++) {
-                        System.out.println(i+"."+Entrenador.get(i));
+                    for (int i = 0; i < Entrenadores.size(); i++) {
+                        System.out.println(i+"."+Entrenadores.get(i));
                     }
                     int DesE=pd.nextInt();
                     System.out.println("Esta es la lista de pokemones existentes");
@@ -55,7 +55,28 @@ public class JavaApplication5 {
                     }
                     System.out.println("Marque el numero de enfrente de pokemon para selecionarlo");
                     int PokS = pd.nextInt();
-                    System.out.println("Desea agregar ese pokemon al equipo de su entrenador o a su caja");
+                    System.out.println("Desea agregar ese pokemon al equipo de su entrenador o a su caja, marque 1 para agregarle al entrenador o 2 para agregarle a su caja");
+                    int opc=pd.nextInt();
+                    switch (opc) {
+                        case 1:
+                            Pokemon[] APokemon= Entrenadores.get(Entrenadores.size()-1).getAPokemon();
+                            boolean simon=false;
+                            for (int i = 0; i < APokemon.length; i++) {
+                                if (APokemon[i]==null&&simon==false) {
+                                   Entrenadores.get(Entrenadores.size()-1).getAPokemon()[i]=Pokemones.get(PokS);
+                                   simon=true;
+                                }
+                            }
+                            if (simon==false) {
+                                System.out.println("NO hay espacio");
+                            }
+                            break;
+                        case 2:
+                            trainer.getCaja().add(Pokemones.get(PokS));
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
                     break;
                 case 2:
 
@@ -89,7 +110,7 @@ public class JavaApplication5 {
                                     System.out.println(i + "." + Pokemones.get(i));
                                 }
                                 System.out.println("Marque el numero de enfrente de pokemon para selecionarlo");
-                                int PokS=pd.nextInt();
+                                 PokS=pd.nextInt();
                                 System.out.println("Esta es la lista de movimientos disponibles que le puede agregar a este pokemon");
                                 for (int i = 0; i < Movimiento.size(); i++) {
                                     System.out.println(i + "." + Movimiento.get(i));
@@ -112,6 +133,7 @@ public class JavaApplication5 {
                                 break;
                         }
                     }
+                    break;
                 case 4:
                     boolean b = true;
                     while (b) {
@@ -158,6 +180,7 @@ public class JavaApplication5 {
                                 break;
                         }
                     }
+                    break;
                 case 5:
                     System.out.println("Saliendo...");
                     bandi = false;
@@ -165,9 +188,13 @@ public class JavaApplication5 {
                 default:
                     System.out.println("Opcion invalida, por favor seleccione otra");
                     break;
+                    
+                    
             }
         }
-
+        System.out.println(Movimiento);
+        System.out.println(Pokemones);
+        System.out.println(Entrenadores);
     }
 
 }

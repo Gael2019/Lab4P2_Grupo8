@@ -115,6 +115,11 @@ public class Pokemon {
         moveset[contador]=m;
 
     }
+
+    @Override
+    public String toString() {
+        return "Pokemon{" + "especie=" + especie + "}\n";
+    }
     
     
 }
