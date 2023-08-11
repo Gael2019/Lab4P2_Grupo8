@@ -9,7 +9,6 @@ package javaapplication5;
  * @author Jorge Ramirez
  */
 public class MFisico extends Movimiento {
-    int poder;
     int ppoder;
     int ppresicion;
 
@@ -18,18 +17,12 @@ public class MFisico extends Movimiento {
     }
     
     
-    public MFisico(int poder, int ppoder, int ppresicion) {
-        this.poder = poder;
+    public MFisico(int ppoder, int ppresicion, String nombre, String descripcion) {
+        this.descripcion=descripcion;
+        this.nombre=nombre;
+
         this.ppoder = ppoder;
         this.ppresicion = ppresicion;
-    }
-
-    public int getPoder() {
-        return poder;
-    }
-
-    public void setPoder(int poder) {
-        this.poder = poder;
     }
 
     public int getPpoder() {
@@ -66,7 +59,7 @@ public class MFisico extends Movimiento {
 
     @Override
     public String toString() {
-        return "MFisico{" + "poder=" + poder + ", ppoder=" + ppoder + ", ppresicion=" + ppresicion + '}';
+        return "MFisico{" +"Nombre=" + nombre + ", Descripcion="+ descripcion +", ppoder=" + ppoder + ", ppresicion=" + ppresicion + "}\n";
     }
 
     public int ataque(Pokemon pokemon1 ,Pokemon pokemon2) {

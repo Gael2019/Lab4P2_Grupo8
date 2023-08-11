@@ -111,8 +111,9 @@ public class Pokemon {
         return moveset;
     }
 
-    public void setMoveset(Movimiento[] moveset) {
-        this.moveset = moveset;
+    public void setMoveset(Movimiento m, int contador) {
+        moveset[contador]=m;
+
     }
     
     

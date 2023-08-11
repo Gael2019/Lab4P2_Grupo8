@@ -17,7 +17,9 @@ public class MEspecial extends Movimiento {
     }
     
     
-    public MEspecial(int ppoder, int ppresicion) {
+    public MEspecial(String nombre, String descripcion, int ppoder, int ppresicion) {
+        this.nombre=nombre;
+        this.descripcion=descripcion;
         this.ppoder = ppoder;
         this.ppresicion = ppresicion;
     }
@@ -56,7 +58,7 @@ public class MEspecial extends Movimiento {
 
     @Override
     public String toString() {
-        return "MEspecial{" + "ppoder=" + ppoder + ", ppresicion=" + ppresicion + '}';
+        return "MEspecial{" +"Nombre=" + nombre + ", Descripcion="+ descripcion + "ppoder=" + ppoder + ", ppresicion=" + ppresicion + "}\n";
     }
 
    

@@ -16,7 +16,9 @@ public class MEstado extends Movimiento {
     }
     
     
-    public MEstado(String Pestado) {
+    public MEstado(String nombre, String descripcion,String Pestado) {
+        this.nombre=nombre;
+        this.descripcion=descripcion;
         this.Pestado = Pestado;
     }
 
@@ -46,7 +48,7 @@ public class MEstado extends Movimiento {
 
     @Override
     public String toString() {
-        return "MEstado{" + "Pestado=" + Pestado + '}';
+        return "MEstado{" +"Nombre=" + nombre + ", Descripcion="+ descripcion + "Pestado=" + Pestado + "}\n";
     }
 
     
