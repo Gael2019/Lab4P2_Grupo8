@@ -78,11 +78,148 @@ public class JavaApplication5 {
                     }
                     break;
                 case 2:
-                    System.out.println("Esta es la lista de entrenadores existentes, marque el numero de enfrente de la opcion para seleccionar");
+                    System.out.println("Esta es la lista de entrenadores existentes, marque el numero de enfrente de la opcion para seleccionar al jugador 1");
                     for (int i = 0; i < Entrenadores.size(); i++) {
                         System.out.println(i + "." + Entrenadores.get(i));
                     }
-                    int desP=
+                    int desP1 = pd.nextInt();
+                    System.out.println("Esta es la lista de entrenadores existentes, marque el numero de enfrente de la opcion para seleccionar al jugador 2");
+                    for (int i = 0; i < Entrenadores.size(); i++) {
+                        System.out.println(i + "." + Entrenadores.get(i));
+                    }
+                    int desP2 = pd.nextInt();
+                    while (desP1 == desP2) {
+                        System.out.println("No puede elegir al mismo entrenador para pelear");
+                        System.out.println("Selecione otro en el player 2");
+                        System.out.println("Esta es la lista de entrenadores existentes, marque el numero de enfrente de la opcion para seleccionar al jugador 2");
+                        for (int i = 0; i < Entrenadores.size(); i++) {
+                            System.out.println(i + "." + Entrenadores.get(i));
+                        }
+                        desP2 = pd.nextInt();
+                    }
+                    System.out.println("Esta es la lista de los pokemones que tiene el entrenador que es jugador 1");
+                    for (int i = 0; i < Entrenadores.get(desP1).APokemon.length; i++) {
+                        System.out.println(i + "." + Entrenadores.get(desP1).getAPokemon()[i]);
+                    }
+                    System.out.println("Marque la posicion del pokemon que tiene el entrenador para enviarlo a pelear");
+                    int DesPel1 = pd.nextInt();
+                    System.out.println();
+                    System.out.println("Esta es la lista de los pokemones que tiene el entrenador que es jugador 2");
+                    for (int i = 0; i < Entrenadores.get(desP2).APokemon.length; i++) {
+                        System.out.println(i + "." + Entrenadores.get(desP2).getAPokemon()[i]);
+                    }
+                    System.out.println("Marque la posicion del pokemon que tiene el entrenador para enviarlo a pelear");
+                    int DesPel2 = pd.nextInt();
+                    while (Entrenadores.get(desP1).getAPokemon()[DesPel1].getVida() >=0 && Entrenadores.get(desP2).getAPokemon()[DesPel2].getVida() >=0) {
+                        if (Entrenadores.get(desP1).getAPokemon()[DesPel1].getVelocidad() > Entrenadores.get(desP2).getAPokemon()[DesPel2].getVelocidad()) {
+                            System.out.println("Jugador 1 es su turno");
+                            System.out.println("Seleccione un ataque para atacar al pokemon");
+                            System.out.println("Los ataques que tiene su pokemon son los siguientes");
+                            
+                                System.out.println(ImprimirArray(Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()));
+                            
+                            System.out.println("Marque la posicion del ataque para seleccionarlo");
+                            int PosA1 = pd.nextInt();
+                            if (Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1] instanceof MEspecial) {
+                                int vidares = Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1].ataque(Entrenadores.get(desP1).getAPokemon()[DesPel1], Entrenadores.get(desP2).getAPokemon()[DesPel2]);
+                                Entrenadores.get(desP2).getAPokemon()[DesPel2].setVida(vidares);
+                            } else if (Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1] instanceof MFisico) {
+                                int resavida = Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1].ataque(Entrenadores.get(desP1).getAPokemon()[DesPel1], Entrenadores.get(desP2).getAPokemon()[DesPel2]);
+                                int vidares = Entrenadores.get(desP2).getAPokemon()[DesPel2].getVida() - resavida;
+                                Entrenadores.get(desP2).getAPokemon()[DesPel2].setVida(vidares);
+                            } else if (Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1] instanceof MEstado) {
+                                int bandera = Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1].ataque(Entrenadores.get(desP1).getAPokemon()[DesPel1], Entrenadores.get(desP2).getAPokemon()[DesPel2]);
+                                if (bandera > 75) {
+                                    System.out.println("No se aplico el efecto");
+                                } else {
+                                    String estado = ((MEstado) Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1]).getPestado();
+                                    Entrenadores.get(desP2).getAPokemon()[DesPel2].setEstado(estado);
+                                }
+
+                            }
+                            System.out.println("Jugador 2 es su turno");
+                            System.out.println("Seleccione un ataque para atacar al pokemon");
+                            System.out.println("Los ataques que tiene su pokemon son los siguientes");
+                            
+                                System.out.println(ImprimirArray(Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()));
+                           
+                            System.out.println("Marque la posicion del ataque para seleccionarlo");
+                            int PosA2 = pd.nextInt();
+                            if (Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2] instanceof MEspecial) {
+                                int vidares = Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2].ataque(Entrenadores.get(desP2).getAPokemon()[DesPel2], Entrenadores.get(desP1).getAPokemon()[DesPel1]);
+                                Entrenadores.get(desP1).getAPokemon()[DesPel1].setVida(vidares);
+                            } else if (Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2] instanceof MFisico) {
+                                int resavida = Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2].ataque(Entrenadores.get(desP2).getAPokemon()[DesPel2], Entrenadores.get(desP1).getAPokemon()[DesPel1]);
+                                int vidares = Entrenadores.get(desP1).getAPokemon()[DesPel1].getVida() - resavida;
+                                Entrenadores.get(desP1).getAPokemon()[DesPel1].setVida(vidares);
+                            } else if (Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2] instanceof MEstado) {
+                                int bandera = Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2].ataque(Entrenadores.get(desP2).getAPokemon()[DesPel2], Entrenadores.get(desP1).getAPokemon()[DesPel1]);
+                                if (bandera > 75) {
+                                    System.out.println("No se aplico el efecto");
+                                } else {
+                                    String estado = ((MEstado) Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2]).getPestado();
+                                    Entrenadores.get(desP1).getAPokemon()[DesPel1].setEstado(estado);
+                                }
+                                System.out.println("Los pokemones se encuentran asi actualmente");
+                                System.out.println(Entrenadores.get(desP1).getAPokemon()[DesPel1]);
+                                System.out.println(Entrenadores.get(desP2).getAPokemon()[DesPel2]);
+                            }
+                        } else {
+                            System.out.println("Jugador 2 es su turno");
+                            System.out.println("Seleccione un ataque para atacar al pokemon");
+                            System.out.println("Los ataques que tiene su pokemon son los siguientes");
+                            
+                                System.out.println(ImprimirArray(Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()));
+                            
+                            System.out.println("Marque la posicion del ataque para seleccionarlo");
+                            int PosA2 = pd.nextInt();
+                            if (Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2] instanceof MEspecial) {
+                                int vidares = Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2].ataque(Entrenadores.get(desP2).getAPokemon()[DesPel2], Entrenadores.get(desP1).getAPokemon()[DesPel1]);
+                                Entrenadores.get(desP1).getAPokemon()[DesPel1].setVida(vidares);
+                            } else if (Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2] instanceof MFisico) {
+                                int resavida = Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2].ataque(Entrenadores.get(desP2).getAPokemon()[DesPel2], Entrenadores.get(desP1).getAPokemon()[DesPel1]);
+                                int vidares = Entrenadores.get(desP1).getAPokemon()[DesPel1].getVida() - resavida;
+                                Entrenadores.get(desP1).getAPokemon()[DesPel1].setVida(vidares);
+                            } else if (Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2] instanceof MEstado) {
+                                int bandera = Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2].ataque(Entrenadores.get(desP2).getAPokemon()[DesPel2], Entrenadores.get(desP1).getAPokemon()[DesPel1]);
+                                if (bandera > 75) {
+                                    System.out.println("No se aplico el efecto");
+                                } else {
+                                    String estado = ((MEstado) Entrenadores.get(desP2).getAPokemon()[DesPel2].getMoveset()[PosA2]).getPestado();
+                                    Entrenadores.get(desP1).getAPokemon()[DesPel1].setEstado(estado);
+                                }
+
+                            }
+                            System.out.println("Jugador 1 es su turno");
+                            System.out.println("Seleccione un ataque para atacar al pokemon");
+                            System.out.println("Los ataques que tiene su pokemon son los siguientes");
+                            
+                                System.out.println(ImprimirArray(Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()));
+                            
+                            System.out.println("Marque la posicion del ataque para seleccionarlo");
+                            int PosA1 = pd.nextInt();
+                            if (Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1] instanceof MEspecial) {
+                                int vidares = Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1].ataque(Entrenadores.get(desP1).getAPokemon()[DesPel1], Entrenadores.get(desP2).getAPokemon()[DesPel2]);
+                                Entrenadores.get(desP2).getAPokemon()[DesPel2].setVida(vidares);
+                            } else if (Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1] instanceof MFisico) {
+                                int resavida = Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1].ataque(Entrenadores.get(desP1).getAPokemon()[DesPel1], Entrenadores.get(desP2).getAPokemon()[DesPel2]);
+                                int vidares = Entrenadores.get(desP2).getAPokemon()[DesPel2].getVida() - resavida;
+                                Entrenadores.get(desP2).getAPokemon()[DesPel2].setVida(vidares);
+                            } else if (Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1] instanceof MEstado) {
+                                int bandera = Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1].ataque(Entrenadores.get(desP1).getAPokemon()[DesPel1], Entrenadores.get(desP2).getAPokemon()[DesPel2]);
+                                if (bandera > 75) {
+                                    System.out.println("No se aplico el efecto");
+                                } else {
+                                    String estado = ((MEstado) Entrenadores.get(desP1).getAPokemon()[DesPel1].getMoveset()[PosA1]).getPestado();
+                                    Entrenadores.get(desP2).getAPokemon()[DesPel2].setEstado(estado);
+                                }
+
+                            }
+                            System.out.println("Los pokemones se encuentran asi actualmente");
+                                System.out.println(Entrenadores.get(desP1).getAPokemon()[DesPel1]);
+                                System.out.println(Entrenadores.get(desP2).getAPokemon()[DesPel2]);
+                        }
+                    }
                     break;
                 case 3:
                     boolean a = true;
@@ -210,6 +347,15 @@ public class JavaApplication5 {
 
             }
         }
+    }
+
+    public static String ImprimirArray(Movimiento[] moveset) {
+        String salida = "";
+        for (int i = 0; i < moveset.length; i++) {
+            salida = i + "." + salida + moveset[i] + "\n";
+
+        }
+        return salida;
     }
 
 }

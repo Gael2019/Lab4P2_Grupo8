@@ -71,8 +71,8 @@ public class Pokemon {
         return nivel;
     }
 
-    public void setNivel(int experiencia) {
-        this.nivel = experiencia;
+    public void setNivel(int x) {
+        this.nivel = x;
     }
 
     public int getExperienciaNecesaria() {
@@ -118,8 +118,10 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon{" + "especie=" + especie + "}\n";
+        return "Pokemon{" + "especie=" + especie + ", vida=" + vida + ", ataque=" + ataque + ", defensa=" + defensa + ", nivel=" + nivel + ", especial=" + especial + ", velocidad=" + velocidad + ", estado=" + estado + '}';
     }
+
+    
     
     
 }
