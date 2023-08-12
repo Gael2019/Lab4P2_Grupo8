@@ -14,7 +14,7 @@ public class Pokemon {
     int vida;
     int ataque;
     int defensa;
-    int experiencia;
+    int nivel;
     int experienciaNecesaria;
     int especial;
     int velocidad;
@@ -23,12 +23,12 @@ public class Pokemon {
     
     Movimiento [] moveset = new Movimiento[4];
     
-    public Pokemon(String especie, int vida, int ataque, int defensa, int experiencia, int experienciaNecesaria, int especial, int velocidad, String estado) {
+    public Pokemon(String especie, int vida, int ataque, int defensa, int nivel, int experienciaNecesaria, int especial, int velocidad, String estado) {
         this.especie = especie;
         this.vida = vida;
         this.ataque = ataque;
         this.defensa = defensa;
-        this.experiencia = experiencia;
+        this.nivel = nivel;
         this.experienciaNecesaria = experienciaNecesaria;
         this.especial = especial;
         this.velocidad = velocidad;
@@ -67,12 +67,12 @@ public class Pokemon {
         this.defensa = defensa;
     }
 
-    public int getExperiencia() {
-        return experiencia;
+    public int getNivel() {
+        return nivel;
     }
 
-    public void setExperiencia(int experiencia) {
-        this.experiencia = experiencia;
+    public void setNivel(int experiencia) {
+        this.nivel = experiencia;
     }
 
     public int getExperienciaNecesaria() {
